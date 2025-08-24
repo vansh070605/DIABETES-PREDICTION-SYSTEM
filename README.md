@@ -86,9 +86,6 @@ Then open 👉 `http://127.0.0.1:8000/` in your browser.
 * Achieved **\~75–80% accuracy**.
 * Visualizations: heatmaps, null-value plots, correlation matrix.
 
-📌 Example Correlation Heatmap:
-![Heatmap Example](assets/heatmap.png)
-
 Accuracy Output:
 
 ```text
