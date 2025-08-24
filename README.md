@@ -1,9 +1,6 @@
 # 🩺 Diabetes Prediction System  
 
-![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)  ![Django](https://img.shields.io/badge/Django-Web%20Framework-green?logo=django)  
-![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)  
-![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-yellow?logo=scikitlearn)  
-![SQLite](https://img.shields.io/badge/SQLite-Database-lightblue?logo=sqlite)  
+![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)  ![Django](https://img.shields.io/badge/Django-Web%20Framework-green?logo=django)  ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)  ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-yellow?logo=scikitlearn)  ![SQLite](https://img.shields.io/badge/SQLite-Database-lightblue?logo=sqlite)  
 
 ## 📌 Project Overview  
 This is a **Diabetes Prediction System** that combines:  
