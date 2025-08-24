@@ -1,4 +1,3 @@
-````markdown
 # 🩺 Diabetes Prediction System  
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)  
@@ -122,5 +121,3 @@ Model Accuracy: 0.77
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-black?logo=github)](https://github.com/vansh070605)
 
 ```
-
----
