@@ -1,8 +1,12 @@
+import os
 from flask import Flask
 
 def create_app():
-    # Point static folder to the root static directory for better Vercel handling
-    app = Flask(__name__, static_folder='../static', static_url_path='/static')
+    # Use absolute path for static folder to be safe across different environments
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    static_dir = os.path.join(base_dir, 'static')
+    
+    app = Flask(__name__, static_folder=static_dir, static_url_path='/static')
     app.config['SECRET_KEY'] = 'diabetes-prediction-secret-key-2026'
     
     # Register Blueprints
