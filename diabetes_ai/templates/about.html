@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}About DiabetesAI - Advanced AI Technology{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header-premium">
+    <h1 class="page-title">About DiabetesAI</h1>
+    <p class="page-subtitle">Merging clinical expertise with advanced machine learning for accessible healthcare.</p>
+</div>
+
+<!-- About Section -->
+<section class="section">
+    <div class="container">
+        <!-- Main Info Card -->
+        <div class="premium-card about-grid reveal">
+            <div class="about-text">
+                <div class="icon-box">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" />
+                        <path d="M12 6v6l4 2" />
+                    </svg>
+                </div>
+                <h2>The Technology</h2>
+                <p class="card-text">DiabetesAI utilizes a sophisticated <strong>Logistic Regression model</strong>
+                    trained on a verified dataset of thousands of patient records. By analyzing 8 critical health
+                    markers, our system identifies risk patterns with clinical relevance.</p>
+
+                <div class="stats-grid-premium">
+                    <div class="stats-card-premium reveal-left">
+                        <span class="stats-number">75%</span>
+                        <span class="stats-label">Accuracy</span>
+                    </div>
+                    <div class="stats-card-premium reveal-right">
+                        <span class="stats-number text-success">8k+</span>
+                        <span class="stats-label">Datapoints</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-visual reveal-right">
+                <h3>Evaluation Metrics</h3>
+                <ul class="process-list">
+                    <li class="process-item">
+                        <span class="process-icon">✓</span> Glucose Tolerance
+                    </li>
+                    <li class="process-item">
+                        <span class="process-icon">✓</span> Insulin Resistance
+                    </li>
+                    <li class="process-item">
+                        <span class="process-icon">✓</span> Body Mass Index (BMI)
+                    </li>
+                    <li class="process-item">
+                        <span class="process-icon">✓</span> Genetic Pedigree
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Mission Cards -->
+        <div class="features-grid">
+            <div class="premium-card reveal">
+                <h3>Accessible</h3>
+                <p class="card-text">Democratizing access to early health screening for everyone, everywhere.</p>
+            </div>
+            <div class="premium-card reveal">
+                <h3>Private</h3>
+                <p class="card-text">Local-first processing ensuring your medical data remains yours, not ours.</p>
+            </div>
+            <div class="premium-card reveal">
+                <h3>Fast</h3>
+                <p class="card-text">Instant analysis replacing days of waiting for lab appointments.</p>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section reveal">
+            <h2>Ready to see it in action?</h2>
+            <a href="{{ url_for('main.predict') }}" class="btn btn-primary btn-large">Try the Assessment</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

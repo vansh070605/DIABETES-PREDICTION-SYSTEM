@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+.env
+.gemini/
+.agent/
+*.pkl
+diabetes.csv
+!diabetes_ai/ml/diabetes_model.pkl

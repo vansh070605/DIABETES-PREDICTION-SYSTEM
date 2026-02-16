@@ -1,0 +1,8 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background Circle (Soft Lavender) -->
+    <circle cx="32" cy="32" r="30" fill="#F5F3FF"/>
+    
+    <!-- Heart Path (Deep Purple) -->
+    <path d="M32 50C32 50 12 38 12 24C12 16 18 10 25 10C29 10 32 12 32 12C32 12 35 10 39 10C46 10 52 16 52 24C52 38 32 50 32 50Z" 
+          fill="#7C3AED"/>
+</svg>

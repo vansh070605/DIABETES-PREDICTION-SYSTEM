@@ -1,14 +1,16 @@
 # 🩺 Diabetes Prediction System  
 
-![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)  ![Django](https://img.shields.io/badge/Django-Web%20Framework-green?logo=django)  ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)  ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-yellow?logo=scikitlearn)  ![SQLite](https://img.shields.io/badge/SQLite-Database-lightblue?logo=sqlite)  
+![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)  ![Flask](https://img.shields.io/badge/Flask-Web%20Framework-lightgrey?logo=flask)  ![Modern UI](https://img.shields.io/badge/Premium-UI/UX-blueviolet)  ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-yellow?logo=scikitlearn)
 
 ## 📌 Project Overview  
-This is a **Diabetes Prediction System** that combines:  
-- ✅ **Machine Learning (Logistic Regression)** trained on the PIMA Diabetes dataset.  
-- ✅ **Django Web Application** for user interaction and predictions.  
-- ✅ **Jupyter Notebook** for ML experimentation.  
+This is a **Modern AI-Powered Diabetes Risk Assessment System** that combines clinical precision with a premium user experience.  
 
-The system predicts whether a person is diabetic or not based on medical input data.  
+### ✨ Key Features
+- 🚀 **Advanced ML Model**: Utilizes a Logistic Regression model trained on clinical data for reliable risk prediction.
+- 🎨 **Premium "Lavender Dream" UI**: A state-of-the-art, glassmorphic design featuring smooth animations and a responsive layout.
+- 🎬 **Dynamic Motion**: Integrated scroll-triggered animations (reveal effects) and interactive hover states.
+- ⚡ **Real-Time Analysis**: Instant results processed through a lightweight Flask backend.
+- 🔒 **Privacy-First**: Zero-retention policy; health metrics are processed in real-time and never stored.
 
 ---
 
@@ -16,25 +18,19 @@ The system predicts whether a person is diabetic or not based on medical input d
 
 ```bash
 DIABETES-PREDICTION-SYSTEM/
-│── .venv/                     # Virtual environment
-│── DiabetesPrediction/        # Django project
-│   │── __pycache__/           
-│   │── __init__.py
-│   │── asgi.py
-│   │── settings.py
-│   │── urls.py
-│   │── views.py
-│   │── wsgi.py
-│   │── static/DiabetesPrediction/images/
-│   │   └── heart.jpg
-│   │── templates/
-│   │   └── home.html
-│── db.sqlite3                 # SQLite database
-│── manage.py                  # Django entry point
-│── diabetes.csv               # Dataset
-│── diabetes.ipynb             # ML Notebook (training & evaluation)
-│── README.md                  # Documentation
-````
+├── diabetes_ai/            # Main Application Package
+│   ├── ml/                 # ML Logic & Model
+│   │   ├── model_loader.py
+│   │   ├── predictor.py
+│   │   └── diabetes_model.pkl
+│   ├── static/             # Assets (CSS, SVG)
+│   ├── templates/          # HTML Templates
+│   ├── __init__.py         # App Initialization
+│   └── routes.py           # Application Routes
+├── run.py                  # Entry Point
+├── requirements.txt        # Dependencies
+└── README.md               # Documentation
+```
 
 ---
 
@@ -45,63 +41,32 @@ DIABETES-PREDICTION-SYSTEM/
 git clone https://github.com/vansh070605/DIABETES-PREDICTION-SYSTEM.git
 cd DIABETES-PREDICTION-SYSTEM
 
-# Create virtual environment (optional)
+# Create & activate virtual environment
 python -m venv venv
 venv\Scripts\activate   # Windows
-source venv/bin/activate  # Linux/Mac
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Run Django server
-python manage.py runserver
+# Run the application
+python run.py
 ```
 
 ---
 
 ## 🚀 Usage
 
-### 🧑‍💻 Run Jupyter Notebook (ML Model)
-
-```bash
-jupyter notebook diabetes.ipynb
-```
-
-### 🌐 Run Django Web App
-
-```bash
-python manage.py runserver
-```
-
-Then open 👉 `http://127.0.0.1:8000/` in your browser.
+1. **Launch the Server**: Run `python app.py`.
+2. **Access the Portal**: Open `http://127.0.0.1:8000` in your browser.
+3. **Start Assessment**: Navigate to the "Predict" page, enter clinical metrics (Glucose, BMI, etc.), and receive an instant AI risk analysis.
 
 ---
 
-## 📊 Results
+## � Model Performance
 
-<details>
-  <summary>Click to expand</summary>
-
-* Logistic Regression trained on **PIMA Diabetes Dataset**.
-* Achieved **\~75–80% accuracy**.
-* Visualizations: heatmaps, null-value plots, correlation matrix.
-
-Accuracy Output:
-
-```text
-Model Accuracy: 0.77
-```
-
-</details>
-
----
-
-## 🔮 Future Enhancements
-
-* Add other ML models (Random Forest, SVM, XGBoost).
-* Integrate **Flask/Streamlit** for lightweight deployment.
-* Deploy Django app on **Heroku / Vercel / AWS**.
-* Add user authentication for personalized predictions.
+- **Algorithm**: Logistic Regression
+- **Accuracy**: ~75-80%
+- **Metrics Evaluated**: pregnancies, glucose, blood pressure, skin thickness, insulin, BMI, diabetes pedigree function, and age.
 
 ---
 

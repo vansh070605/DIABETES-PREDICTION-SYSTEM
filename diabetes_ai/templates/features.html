@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Features - DiabetesAI{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header-premium">
+    <h1 class="page-title">Platform Features</h1>
+    <p class="page-subtitle">Engineered for speed, accuracy, and absolute privacy. Discover why thousands trust
+        DiabetesAI.</p>
+</div>
+
+<!-- Features Section -->
+<section class="section">
+    <div class="container">
+        <div class="features-grid">
+
+            <div class="premium-card reveal-left">
+                <div class="icon-box">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                </div>
+                <h3>Verified Accuracy</h3>
+                <p class="card-text">75% predictive accuracy validated against unseen medical records using standard
+                    splits.</p>
+            </div>
+
+            <div class="premium-card reveal">
+                <div class="icon-box">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                </div>
+                <h3>Real-Time Analysis</h3>
+                <p class="card-text">Instant inference running directly on high-performance servers. Results in
+                    milliseconds.</p>
+            </div>
+
+            <div class="premium-card reveal-right">
+                <div class="icon-box">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                </div>
+                <h3>Zero Retention</h3>
+                <p class="card-text">We do not store inputs. Your data exists only in memory during processing and is
+                    wiped instantly.</p>
+            </div>
+
+            <div class="premium-card reveal-left">
+                <div class="icon-box">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                    </svg>
+                </div>
+                <h3>Clinical Factors</h3>
+                <p class="card-text">Considers 8 distinct physiological attributes for a holistic view based on WHO
+                    guidelines.</p>
+            </div>
+
+            <div class="premium-card reveal">
+                <div class="icon-box">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="2" y1="12" x2="22" y2="12" />
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
+                </div>
+                <h3>Always Online</h3>
+                <p class="card-text">24/7 availability with 99.9% uptime via global CDN for checking whenever you need.
+                </p>
+            </div>
+
+            <div class="premium-card reveal-right">
+                <div class="icon-box">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                        <polyline points="2 17 12 22 22 17" />
+                        <polyline points="2 12 12 17 22 12" />
+                    </svg>
+                </div>
+                <h3>Simple UX</h3>
+                <p class="card-text">No complex dashboards. Just a simple form and clear answers designed for everyone.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section reveal">
+            <h2>Ready to prioritize your health?</h2>
+            <p>Join thousands of others taking control today.</p>
+            <a href="{{ url_for('main.predict') }}" class="btn btn-primary btn-large">Start Assessment</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

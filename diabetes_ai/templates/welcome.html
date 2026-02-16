@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %}DiabetesAI - Advanced Diabetes Risk Prediction{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero" id="home">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                ✨ Free Health Assessment
+            </div>
+            <h1 class="hero-title">Check Your Diabetes Risk in Minutes</h1>
+            <p class="hero-subtitle">Get a quick, easy health assessment using simple information you already know. No
+                medical jargon, no complicated forms.</p>
+
+            <!-- CTA Button -->
+            <div class="hero-cta">
+                <a href="{{ url_for('main.predict') }}" class="btn btn-primary btn-large">
+                    <span>Start Your Free Check</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 5L15 10L10 15L8.59 13.59L11.17 11H5V9H11.17L8.59 6.41L10 5Z" />
+                    </svg>
+                </a>
+                <a href="{{ url_for('main.about') }}" class="btn btn-secondary btn-large">
+                    <span>How It Works</span>
+                </a>
+            </div>
+
+            <!-- Stats Counter -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-icon">🎯</div>
+                    <span class="stat-number" data-target="75">0</span>
+                    <span class="stat-label">Accuracy Rate</span>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">⚡</div>
+                    <span class="stat-number" data-target="3">0</span>
+                    <span class="stat-label">Minute Check</span>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">🔒</div>
+                    <span class="stat-number" data-target="100">0</span>
+                    <span class="stat-label">% Secure</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Features Preview -->
+<section class="section">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2 class="section-title">Simple, Fast, and Secure</h2>
+            <p class="section-subtitle">Everything you need for a quick health check</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="card reveal-left">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">Reliable Results</h3>
+                <p class="card-text">Our system has been trained on thousands of real medical records to give you
+                    accurate predictions.</p>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-icon">⚡</div>
+                <h3 class="card-title">Get Answers Fast</h3>
+                <p class="card-text">Fill out a simple form and get your results in less than 3 minutes. No waiting, no
+                    hassle.</p>
+            </div>
+
+            <div class="card reveal-right">
+                <div class="card-icon">🔒</div>
+                <h3 class="card-title">Your Privacy Matters</h3>
+                <p class="card-text">We don't store any of your information. Your data stays private and is deleted
+                    immediately after your check.</p>
+            </div>
+        </div>
+
+        <div class="cta-section reveal">
+            <h2>Ready to Check Your Health?</h2>
+            <p>It only takes a few minutes and it's completely free</p>
+            <a href="{{ url_for('main.predict') }}" class="btn btn-success btn-large">
+                Start Your Free Check Now
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 5L15 10L10 15L8.59 13.59L11.17 11H5V9H11.17L8.59 6.41L10 5Z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Stats Counter Animation
+    function animateCounter(element) {
+        const target = parseInt(element.getAttribute('data-target'));
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+
+        const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+                element.textContent = target;
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(current);
+            }
+        }, 16);
+    }
+
+    // Animate counters when visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counters = entry.target.querySelectorAll('.stat-number');
+                counters.forEach(counter => animateCounter(counter));
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+
+    const statsSection = document.querySelector('.hero-stats');
+    if (statsSection) {
+        observer.observe(statsSection);
+    }
+
+    // Navbar Scroll Effect
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+</script>
+{% endblock %}

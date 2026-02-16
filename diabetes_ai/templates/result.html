@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}Your Diabetes Risk Assessment Results{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css">
+{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header" style="text-align: center; margin-bottom: 2rem;">
+    <h1 class="page-title">Assessment Complete</h1>
+    <p class="page-subtitle" style="color: var(--text-muted);">Here is your personalized health analysis</p>
+</div>
+
+<!-- Result Card -->
+<div class="container">
+    <div class="prediction-form-card result-card">
+
+        <div class="result-header">
+            <div class="result-label">Prediction Result</div>
+
+            <div class="result-badge-container">
+                <div class="result-icon {{ 'text-success' if result.risk_level == 'Low Risk' else 'text-danger' }}">
+                    {% if result.risk_level == 'Low Risk' %}🛡️{% else %}⚠️{% endif %}
+                </div>
+            </div>
+
+            <h2 class="result-value">{{ result.risk_level }}</h2>
+            <p class="result-message">
+                {% if result.risk_level == 'Low Risk' %}
+                Great news! Your indicators suggest a healthy profile.
+                {% else %}
+                Our analysis suggests you may be at higher risk. Please consult a doctor.
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="result-stats-grid">
+            <div class="result-stat-item">
+                <div class="result-stat-label">Confidence</div>
+                <div class="result-stat-value">{{ result.confidence }}%</div>
+            </div>
+            <div class="result-stat-item">
+                <div class="result-stat-label">Category</div>
+                <div class="result-stat-value" style="color: var(--text-main);">{{ result.category }}</div>
+            </div>
+            <div class="result-stat-item">
+                <div class="result-stat-label">Date</div>
+                <div class="result-stat-value" style="color: var(--text-main);">{{ result.date }}</div>
+            </div>
+        </div>
+
+        <div class="result-disclaimer">
+            <strong>⚕️ Medical Disclaimer:</strong> This AI assessment is not a diagnosis. It is a statistical
+            prediction based on the data provided. Always consult a qualified healthcare professional for medical
+            advice.
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="result-actions">
+            <a href="{{ url_for('main.predict') }}" class="btn btn-primary">
+                New Assessment
+            </a>
+            <a href="{{ url_for('main.welcome') }}" class="btn btn-secondary">
+                Back to Home
+            </a>
+        </div>
+    </div>
+
+    <!-- Confetti for low risk -->
+    {% if result.risk_class == 'low-risk' %}
+    <canvas id="confetti-canvas"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999;"></canvas>
+    {% endif %}
+</div>
+
+<!-- Particles Background - Keeping it minimal or removing if desired, but sticking to plan of organic shapes in CSS -->
+<!-- Removed particles div as per cleaner aesthetic plan -->
+
+{% endblock %}
+
+{% block extra_js %}
+<!-- Particles.js -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<!-- Canvas Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+<script>
+    // Particles.js Configuration
+    particlesJS('particles-js', {
+        particles: {
+            number: {
+                value: 60,
+                density: {
+                    enable: true,
+                    value_area: 800
+                }
+            },
+            color: {
+                value: '#3b82f6'
+            },
+            shape: {
+                type: 'circle'
+            },
+            opacity: {
+                value: 0.3,
+                random: true
+            },
+            size: {
+                value: 3,
+                random: true
+            },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: '#60a5fa',
+                opacity: 0.2,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 1.5
+            }
+        },
+        interactivity: {
+            detect_on: 'canvas',
+            events: {
+                onhover: {
+                    enable: true,
+                    mode: 'repulse'
+                },
+                resize: true
+            }
+        },
+        retina_detect: true
+    });
+
+    // Confetti Animation for Low Risk
+    {% if result.risk_class == 'low-risk' %}
+    setTimeout(() => {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#10b981', '#34d399', '#6ee7b7']
+        });
+    }, 500);
+    {% endif %}
+
+    // Navbar Scroll Effect
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+</script>
+{% endblock %}<!-- Removed legacy particles script -->

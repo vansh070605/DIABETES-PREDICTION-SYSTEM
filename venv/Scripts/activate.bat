@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=E:\coding\CODING PROJECTS\ML PROJECTS\DIABETES PREDICTION SYSTEM\venv
+set VIRTUAL_ENV=E:\CODING\DIABETES-PREDICTION-SYSTEM\venv
 
 if not defined PROMPT set PROMPT=$P$G
 
