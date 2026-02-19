@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}Contact Us - GlucoSense{% endblock %}
+{% block title %}Help & Connect - GlucoSense{% endblock %}
 
 {% block extra_css %}
 <style>
-    /* Contact Page Specific Styles */
-    .contact-hero {
+    /* Help Page Specific Styles */
+    .help-hero {
         text-align: center;
         padding: 4rem 1.5rem 3rem;
         background: radial-gradient(circle at center, rgba(124, 58, 237, 0.05) 0%, transparent 70%);
     }
 
-    .contact-wrapper {
+    .help-wrapper {
         display: grid;
-        grid-template-columns: 1fr 1.5fr;
+        grid-template-columns: 1fr 1fr;
         gap: 3rem;
         margin-top: 2rem;
     }
 
-    /* Contact Info Cards */
-    .contact-info-card {
+    /* Connect Cards */
+    .connect-card {
         background: var(--surface);
         border-radius: var(--radius-md);
         padding: 2rem;
@@ -28,77 +28,45 @@
         transition: all 0.3s ease;
         margin-bottom: 1.5rem;
         display: flex;
-        align-items: flex-start;
-        gap: 1.5rem;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.25rem;
     }
 
-    .contact-info-card:hover {
+    .connect-card:hover {
         transform: translateY(-5px);
         box-shadow: var(--shadow-md);
         border-color: var(--primary-soft);
     }
 
-    .contact-icon {
-        width: 48px;
-        height: 48px;
+    .connect-icon {
+        width: 64px;
+        height: 64px;
         background: var(--primary-soft);
-        border-radius: 12px;
+        border-radius: 16px;
         display: flex;
         align-items: center;
         justify-content: center;
         color: var(--primary);
-        flex-shrink: 0;
     }
 
-    .contact-details h3 {
-        font-size: 1.1rem;
+    .connect-details h3 {
+        font-size: 1.25rem;
         margin-bottom: 0.5rem;
         color: var(--text-main);
     }
 
-    .contact-details p {
+    .connect-details p {
         color: var(--text-muted);
         font-size: 0.95rem;
         line-height: 1.6;
-    }
-
-    .contact-details a {
-        color: var(--primary);
-        font-weight: 600;
-        text-decoration: none;
-    }
-
-    .contact-details a:hover {
-        text-decoration: underline;
-    }
-
-    /* Contact Form */
-    .contact-form-card {
-        background: var(--surface);
-        border-radius: var(--radius-lg);
-        padding: 3rem;
-        box-shadow: var(--shadow-lg);
-        border: 1px solid rgba(255, 255, 255, 0.8);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .contact-form-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: linear-gradient(90deg, var(--primary), var(--accent));
+        margin-bottom: 1rem;
     }
 
     /* FAQ Section */
     .faq-section {
-        margin-top: 6rem;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
+        margin-top: 4rem;
     }
 
     .section-header-center {
@@ -109,44 +77,50 @@
     .faq-grid {
         display: grid;
         gap: 1.5rem;
+        max-width: 900px;
+        margin: 0 auto;
     }
 
     .faq-card {
         background: white;
         border-radius: var(--radius-md);
-        padding: 1.5rem;
-        border: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 1.75rem;
+        border: 1px solid rgba(124, 58, 237, 0.1);
         transition: all 0.3s ease;
     }
 
     .faq-card:hover {
         border-color: var(--primary-soft);
         box-shadow: var(--shadow-sm);
+        transform: translateX(5px);
     }
 
     .faq-card h4 {
         font-size: 1.1rem;
-        margin-bottom: 0.75rem;
-        color: var(--text-main);
+        margin-bottom: 1rem;
+        color: var(--primary);
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        gap: 0.75rem;
     }
 
     .faq-card p {
         color: var(--text-muted);
-        line-height: 1.6;
+        line-height: 1.7;
         font-size: 0.95rem;
     }
 
     /* Responsive */
     @media (max-width: 900px) {
-        .contact-wrapper {
+        .help-wrapper {
             grid-template-columns: 1fr;
+            gap: 1.5rem;
+            /* Reduce gap on mobile */
         }
 
-        .contact-form-card {
-            padding: 2rem;
+        /* Prevent elements starting at translateX(50px) from causing horizontal scroll */
+        .main-content {
+            overflow-x: hidden;
         }
     }
 </style>
@@ -154,113 +128,82 @@
 
 {% block content %}
 <!-- Hero Section -->
-<div class="contact-hero">
+<div class="help-hero">
     <div class="container">
-        <h1 class="page-title">We're Here to Help</h1>
-        <p class="page-subtitle">Have questions about the GlucoSense prediction tool? Reach out to our team.</p>
+        <h1 class="page-title">Help & Connectivity</h1>
+        <p class="page-subtitle">Frequently asked questions and professional connection points.</p>
     </div>
 </div>
 
-<div class="container" style="padding-bottom: 6rem;">
-    <div class="contact-wrapper">
-        <!-- Left Column: Contact Info -->
-        <div class="contact-info-column reveal-left">
-
-            <div class="contact-info-card">
-                <div class="contact-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                </div>
-                <div class="contact-details">
-                    <h3>Email Support</h3>
-                    <p>Our team typically responds within 24 hours.</p>
-                    <a href="mailto:support@glucosense.com">support@glucosense.com</a>
-                </div>
+<div class="container" style="padding-bottom: 8rem;">
+    <!-- Connect Column -->
+    <div class="help-wrapper">
+        <div class="connect-card reveal-left">
+            <div class="connect-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
             </div>
-
-            <div class="contact-info-card">
-                <div class="contact-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                </div>
-                <div class="contact-details">
-                    <h3>Live Chat</h3>
-                    <p>Available Mon-Fri, 9am - 5pm EST.</p>
-                    <a href="#">Start a conversation</a>
-                </div>
+            <div class="connect-details">
+                <h3>Open Source Feedback</h3>
+                <p>Found a bug or have a feature idea? Share it on GitHub. We love community contributions!</p>
+                <a href="https://github.com/vansh070605" target="_blank" class="btn btn-secondary">Report an Issue</a>
             </div>
-
-            <div class="contact-info-card">
-                <div class="contact-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path
-                            d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-                        </path>
-                    </svg>
-                </div>
-                <div class="contact-details">
-                    <h3>Social Community</h3>
-                    <p>Follow us for updates and health tips.</p>
-                    <a href="#">@GlucoSense_Official</a>
-                </div>
-            </div>
-
-            <!-- Visual Decoration / Map Placeholder -->
-            <div
-                style="margin-top: 2rem; border-radius: 20px; overflow: hidden; height: 200px; background: #e0e7ff; display: flex; align-items: center; justify-content: center; opacity: 0.7;">
-                <span style="color: var(--primary); font-weight: 600;">Global Remote Team 🌍</span>
-            </div>
-
         </div>
 
-        <!-- Right Column: Contact Form -->
-        <div class="contact-form-column reveal-right">
-            <div class="contact-form-card">
-                <h2 style="margin-bottom: 1.5rem; color: var(--text-main);">Send us a Message</h2>
-                <form>
-                    <div class="form-field">
-                        <label class="field-label">Full Name</label>
-                        <input type="text" class="field-input" placeholder="e.g. John Doe">
-                    </div>
-
-                    <div class="form-field">
-                        <label class="field-label">Email Address</label>
-                        <input type="email" class="field-input" placeholder="e.g. john@example.com">
-                    </div>
-
-                    <div class="form-field">
-                        <label class="field-label">Subject</label>
-                        <select class="field-input">
-                            <option>General Inquiry</option>
-                            <option>Technical Support</option>
-                            <option>Partnership</option>
-                            <option>Feedback</option>
-                        </select>
-                    </div>
-
-                    <div class="form-field">
-                        <label class="field-label">Message</label>
-                        <textarea class="field-input" rows="5" placeholder="How can we help you?"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">
-                        Send Message
-                    </button>
-                    <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
-                        We respect your privacy. No spam, ever.
-                    </p>
-                </form>
+        <div class="connect-card reveal-right">
+            <div class="connect-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+            </div>
+            <div class="connect-details">
+                <h3>Professional Connect</h3>
+                <p>Let's network! Visit my LinkedIn for collaboration or professional inquiries.</p>
+                <a href="https://www.linkedin.com/in/thevanshagrawal" target="_blank" class="btn btn-primary">Visit
+                    LinkedIn</a>
             </div>
         </div>
     </div>
 
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <div class="section-header-center reveal">
+            <h2 class="section-title">Common Questions</h2>
+            <p class="section-subtitle">Quick answers to frequently asked questions about GlucoSense.</p>
+        </div>
 
+        <div class="faq-grid">
+            <div class="faq-card reveal">
+                <h4><span>💡</span> How accurate is the prediction?</h4>
+                <p>GlucoSense uses a Logistic Regression model trained on clinical diagnostic data. While it provides
+                    ~75-80% accuracy, it is a statistical probability and should not be taken as a medical diagnosis.
+                </p>
+            </div>
 
+            <div class="faq-card reveal">
+                <h4><span>🔒</span> Is my health data stored?</h4>
+                <p>No. Your privacy is our priority. All metrics entered in the assessment form are processed in
+                    real-time by the AI and are immediately discarded. We do not maintain any database of user records.
+                </p>
+            </div>
+
+            <div class="faq-card reveal">
+                <h4><span>0️⃣</span> What if I don't know my Insulin level?</h4>
+                <p>You can enter '0' for fields like Insulin or Skin Thickness if you don't have a recent clinical
+                    report. The model is trained to handle missing values by using zero as a placeholder, though
+                    providing all metrics yields higher accuracy.</p>
+            </div>
+
+            <div class="faq-card reveal">
+                <h4><span>👨‍⚕️</span> Should I see a doctor?</h4>
+                <p>Yes. If GlucoSense indicates a 'High Risk', we strongly recommend consulting a healthcare
+                    professional for a comprehensive clinical screening. This tool is for informational purposes only.
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

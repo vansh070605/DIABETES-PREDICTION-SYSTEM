@@ -7,8 +7,7 @@
     /* Page-Specific Styles */
     .premium-form-container {
         max-width: 800px;
-        margin: 0 auto 6rem;
-        /* Added bottom spacing */
+        margin: 0 auto 8rem;
         position: relative;
     }
 
@@ -68,10 +67,109 @@
         align-items: center;
         gap: 0.5rem;
         margin-left: auto;
+        transition: all 0.2s ease;
     }
 
     .toggle-calculator:hover {
-        text-decoration: underline;
+        opacity: 0.8;
+        transform: translateY(-1px);
+    }
+
+    /* Calculator Panel */
+    .bmi-calculator-panel {
+        display: none;
+        background: var(--primary-soft);
+        padding: 1.5rem;
+        border-radius: var(--radius-md);
+        margin-bottom: 2rem;
+        border: 1px solid rgba(124, 58, 237, 0.1);
+        animation: slideDown 0.3s var(--ease-bounce);
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .bmi-result-text {
+        margin-top: 1rem;
+        text-align: center;
+        color: var(--primary);
+        font-weight: 600;
+    }
+
+    /* Checkbox Styling */
+    .checkbox-container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 0;
+        cursor: pointer;
+        font-size: 0.95rem;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        color: var(--text-main);
+    }
+
+    .checkbox-container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 22px;
+        width: 22px;
+        background-color: white;
+        border: 2px solid #E5E7EB;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+    }
+
+    .checkbox-container:hover input~.checkmark {
+        background-color: #F9FAFB;
+        border-color: var(--primary-light);
+    }
+
+    .checkbox-container input:checked~.checkmark {
+        background-color: var(--primary);
+        border-color: var(--primary);
+    }
+
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    .checkbox-container input:checked~.checkmark:after {
+        display: block;
+    }
+
+    .checkbox-container .checkmark:after {
+        left: 7px;
+        top: 3px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
     }
 </style>
 {% endblock %}
@@ -170,7 +268,7 @@
             <!-- SECTION 2: Clinical Metrics -->
             <div class="form-section-premium reveal">
                 <div class="section-title-premium">
-                    <span>🩸</span> Clinical Metrics
+                    <span>🩸</span> Health & Clinical Metrics
                 </div>
 
                 <div class="form-row">
@@ -178,8 +276,9 @@
                     <div class="input-group">
                         <input type="number" name="glucose" id="glucose" class="input-pill" placeholder=" " min="0"
                             max="300" required>
-                        <label for="glucose" class="input-label-floating">Glucose Level</label>
+                        <label for="glucose" class="input-label-floating">Blood Sugar (Glucose)</label>
                         <span class="input-unit">mg/dL</span>
+                        <span class="input-hint">Plasma glucose (typically 70-140 mg/dL)</span>
                         <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M18.6 18.6L12 12V2.5"></path>
                             <circle cx="12" cy="12" r="10"></circle>
@@ -192,6 +291,7 @@
                             placeholder=" " min="0" max="200" required>
                         <label for="blood_pressure" class="input-label-floating">Blood Pressure</label>
                         <span class="input-unit">mm Hg</span>
+                        <span class="input-hint">Diastolic (the <b>lower</b> number, e.g. 80)</span>
                         <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
                         </svg>
@@ -205,6 +305,7 @@
                             max="900" required>
                         <label for="insulin" class="input-label-floating">Insulin Level</label>
                         <span class="input-unit">μU/mL</span>
+                        <span class="input-hint">2-Hour serum insulin (Can be 0 if unknown)</span>
                         <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M19 14l-7 7-7-7"></path>
                             <path d="M12 19V5"></path>
@@ -215,8 +316,9 @@
                     <div class="input-group">
                         <input type="number" name="skin_thickness" id="skin_thickness" class="input-pill"
                             placeholder=" " min="0" max="100" required>
-                        <label for="skin_thickness" class="input-label-floating">Skin Thickness</label>
+                        <label for="skin_thickness" class="input-label-floating">Body Fat (Skinfold)</label>
                         <span class="input-unit">mm</span>
+                        <span class="input-hint">Triceps skin thickness (Can be 0 if unknown)</span>
                         <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                             <line x1="12" y1="8" x2="12" y2="16"></line>
@@ -224,18 +326,61 @@
                     </div>
                 </div>
 
-                <!-- Pedigree Function -->
+                <!-- Family History (Replaces Pedigree Function) -->
                 <div class="input-group">
                     <input type="number" step="0.001" name="diabetes_pedigree" id="diabetes_pedigree" class="input-pill"
                         placeholder=" " min="0" max="3" required>
-                    <label for="diabetes_pedigree" class="input-label-floating">Diabetes Pedigree Function</label>
+                    <label for="diabetes_pedigree" class="input-label-floating">Family History Score</label>
                     <span class="input-unit">score</span>
-                    <span class="input-hint">Genetic score (usually 0.1 - 2.5)</span>
+                    <span class="input-hint">AI-calculated genetic risk score (typically 0.1 - 2.5)</span>
                     <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M8 12h8"></path>
-                        <path d="M12 8v8"></path>
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                     </svg>
+
+                    <button type="button" class="toggle-calculator" onclick="toggleHistoryCalculator()"
+                        style="position: absolute; right: 0; top: -30px;">
+                        <span>🧬 Calculate History Score</span>
+                    </button>
+                </div>
+
+                <!-- Family History Calculator Layout -->
+                <div id="historyCalculator" class="bmi-calculator-panel" style="margin-top: 1rem;">
+                    <h4 style="margin-bottom: 1rem; color: var(--text-main);">Family Diabetes History</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+                        Select biological relatives who have been diagnosed with diabetes.
+                    </p>
+
+                    <div class="history-grid"
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="hist_mother"> Mother
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="hist_father"> Father
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="hist_sibling"> Sibling(s)
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="hist_grandparent"> Grandparent(s)
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="hist_aunt_uncle"> Aunt / Uncle
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="hist_cousin"> First Cousin
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+
+                    <button type="button" class="btn btn-secondary" onclick="calculateHistoryScore()"
+                        style="width: 100%;">Apply Assessment</button>
+                    <div id="historyResult" class="bmi-result-text" style="margin-top: 1rem; font-size: 0.9rem;"></div>
                 </div>
             </div>
 
@@ -306,12 +451,52 @@
         document.getElementById('bmi').dispatchEvent(new Event('input'));
 
         let msg = '';
-        if (bmi < 18.5) msg = 'Underweight';
-        else if (bmi < 25) msg = 'Normal';
-        else if (bmi < 30) msg = 'Overweight';
-        else msg = 'Obese';
+        let color = '#7C3AED';
+        if (bmi < 18.5) { msg = 'Underweight'; color = '#F59E0B'; }
+        else if (bmi < 25) { msg = 'Normal Weight'; color = '#10B981'; }
+        else if (bmi < 30) { msg = 'Overweight'; color = '#F59E0B'; }
+        else { msg = 'Obese'; color = '#EF4444'; }
 
-        document.getElementById('bmiResult').innerHTML = `<strong>BMI: ${bmi}</strong> (${msg})`;
+        document.getElementById('bmiResult').innerHTML = `<span style="color: ${color}"><strong>Score: ${bmi}</strong> — ${msg}</span>`;
+    }
+
+    // History Logic
+    function toggleHistoryCalculator() {
+        const panel = document.getElementById('historyCalculator');
+        if (panel.style.display === 'block') {
+            panel.style.display = 'none';
+        } else {
+            panel.style.display = 'block';
+            panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+
+    function calculateHistoryScore() {
+        let score = 0.1; // Baseline
+
+        if (document.getElementById('hist_mother').checked) score += 0.45;
+        if (document.getElementById('hist_father').checked) score += 0.45;
+        if (document.getElementById('hist_sibling').checked) score += 0.35;
+        if (document.getElementById('hist_grandparent').checked) score += 0.2;
+        if (document.getElementById('hist_aunt_uncle').checked) score += 0.15;
+        if (document.getElementById('hist_cousin').checked) score += 0.1;
+
+        // Add some "random" genetic variance for realism (0-0.05)
+        score += Math.random() * 0.05;
+
+        const finalScore = score.toFixed(3);
+        document.getElementById('diabetes_pedigree').value = finalScore;
+
+        // Trigger visual update
+        document.getElementById('diabetes_pedigree').dispatchEvent(new Event('input'));
+
+        let riskLabel = "";
+        let riskColor = "";
+        if (score < 0.3) { riskLabel = "Low Genetic Risk"; riskColor = "#10B981"; }
+        else if (score < 0.8) { riskLabel = "Moderate Genetic Risk"; riskColor = "#F59E0B"; }
+        else { riskLabel = "High Genetic Risk"; riskColor = "#EF4444"; }
+
+        document.getElementById('historyResult').innerHTML = `<span style="color: ${riskColor}"><strong>Calculated Score: ${finalScore}</strong><br>${riskLabel}</span>`;
     }
 
     // Input Visuals

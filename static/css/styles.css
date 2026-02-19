@@ -526,7 +526,7 @@ a {
     box-shadow: var(--shadow-md);
     padding: 2.5rem;
     max-width: 900px;
-    margin: 0 auto;
+    margin: 0 auto 6rem;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.8);
     /* Top Accent for premium feel */
